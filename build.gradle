@@ -24,6 +24,9 @@ dependencies {
  	 compile 'mysql:mysql-connector-java:5.1.31'
  	 compile 'org.hibernate:hibernate-core:4.3.10.Final'
  	 compile 'org.hibernate:hibernate-entitymanager:4.3.10.Final'	
+ 	 //needed for validating
+ 	 compile 'org.hibernate:hibernate-validator:5.2.4.Final'
+     compile 'javax.validation:validation-api:1.1.0.Final'
 }
 
 // Embeded Jetty for testing

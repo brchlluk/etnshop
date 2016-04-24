@@ -14,6 +14,14 @@
 
 <div class="container">
 	<h2>Products</h2>
+	<div id=add>
+		<a class="btn btn-default btn-md" href="/etnshop/product/edit"
+			role="button">New product</a>
+	</div>
+	<div id=search>
+		<input type="text" class="form-search"> <input type="submit"
+			class="btn btn-default btn-md" value="Search">
+	</div>
 	<table class="table">
 		<thead>
 			<tr>
@@ -26,11 +34,20 @@
 				<tr>
 					<td>${product.id}</td>
 					<td>${product.name}</td>
-				</tr>	
+					<td>${product.serial}</td>
+
+					<td width=20><spring:url value="/resources/core/images/edit.png" var="edit" /> <a
+						href="edit?id=${product.id}"> <img src="${edit}">
+					</a></td>
+					<td width=20><spring:url value="/resources/core/images/delete.png" var="delete" /> <a
+						href="delete?id=${product.id}"> <img src="${delete}">
+					</a></td>
+				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	<hr>
+	<div id="recordsNum">Records: ${count}</div>
 	<footer>
 		<p>&copy; Etnetera a.s. 2015</p>
 	</footer>
@@ -40,6 +57,7 @@
 	var="bootstrapJs" />
 
 <script src="${bootstrapJs}"></script>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </body>
 </html>

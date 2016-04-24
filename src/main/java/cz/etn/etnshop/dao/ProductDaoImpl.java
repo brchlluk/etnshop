@@ -20,6 +20,12 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
 		 Criteria criteria = getSession().createCriteria(Product.class);
 	     return (List<Product>) criteria.list();
 	}
+	
+	@Override
+	public Product getProduct(int productId) {
+		Object product = getSession().get(Product.class, productId);
+		return (Product) product;        
+	}
 
 	@Override
 	public void deleteProduct(int productId) {
@@ -28,12 +34,14 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
         query.executeUpdate();
 	}
 
-
 	@Override
 	public void updateProduct(Product product) {
 		getSession().update(product);
-		
 	}
-	
 
+	@Override
+	public boolean isProductExist(int productId)
+	{
+		return getSession().get(Product.class, productId) != null;
+	}
 }

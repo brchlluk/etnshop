@@ -9,18 +9,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+
 @Entity
-@Table(name="product")
+@Table(name = "product")
 public class Product implements Serializable {
-	
- 	private static final long serialVersionUID = -2739622030641073946L;
 
+	private static final long serialVersionUID = -2739622030641073946L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
- 
-    private String name;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+	@NotEmpty(message = "Name is required.")
+	private String name;
+	
+	@NotEmpty(message = "Serial is required.")
+	private String serial;
+	
 	public int getId() {
 		return id;
 	}
@@ -29,7 +36,7 @@ public class Product implements Serializable {
 		this.id = id;
 	}
 
-    @Column(name = "name", nullable = false)
+	@Column(name = "name", nullable = false)
 	public String getName() {
 		return name;
 	}
@@ -37,7 +44,14 @@ public class Product implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-    
-    
-    
+
+	@Column(name = "serial", nullable = false)
+	public String getSerial() {
+		return serial;
+	}
+
+	public void setSerial(String serial) {
+		this.serial = serial;
+	}
+
 }

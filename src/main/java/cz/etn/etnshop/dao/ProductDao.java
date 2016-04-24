@@ -11,10 +11,17 @@ public interface ProductDao {
     
 	@Transactional(readOnly = true)
 	List<Product> getProducts();
+	
+	@Transactional(readOnly = true)
+	Product getProduct(int productId);
 
 	@Transactional(readOnly = false)
     void deleteProduct(int productId);
 
 	@Transactional(readOnly = false)
     void updateProduct(Product product);
+	
+	@Transactional(readOnly = false)
+    boolean isProductExist(int productId);
+	
 }
