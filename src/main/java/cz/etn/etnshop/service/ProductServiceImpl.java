@@ -41,9 +41,12 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public boolean isProductExist(int productId)
-	{
+	public boolean isProductExist(int productId)	{
 		return productDao.isProductExist(productId);
 	}
-
+	
+	@Override
+	public List<Product> searchProducts(String expression) {
+		return productDao.searchProducts(expression);
+	}
 }

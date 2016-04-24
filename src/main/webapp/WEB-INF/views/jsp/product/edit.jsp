@@ -25,7 +25,7 @@
 		<h2>
 			<c:out value="${title}" />
 		</h2>
-		<form:form method="POST" commandName="product">
+		<form:form method="post" commandName="product">
 			<table>
 				<tr>
 					<th><label> Product name: </label></th>
@@ -36,7 +36,7 @@
 					<td><form:input path="serial" /> <form:errors path="serial" cssClass="error" /></td>
 				</tr>
 				<tr>
-					<td><input type="submit" /></td>
+					<td><input type="submit"  value="${title}" /></td>
 				</tr>
 			</table>
 		</form:form>

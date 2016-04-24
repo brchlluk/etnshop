@@ -23,6 +23,9 @@ public interface ProductService {
 	@Transactional(readOnly = false)
     void updateProduct(Product product);
 	
-	@Transactional(readOnly = false)
+	@Transactional(readOnly = true)
     boolean isProductExist(int productId);
+	
+	@Transactional(readOnly = true)
+	List<Product> searchProducts(String expression);
 }

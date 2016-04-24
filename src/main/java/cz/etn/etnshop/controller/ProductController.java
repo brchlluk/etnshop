@@ -1,5 +1,7 @@
 package cz.etn.etnshop.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -31,8 +33,20 @@ public class ProductController {
 		modelAndView.addObject("products", productService.getProducts());
 		return modelAndView;
 	}
+	
+	@RequestMapping(value = "/list", method = RequestMethod.POST)
+	public ModelAndView search(@RequestParam(value="expression", required=true) String expression) {
+		ModelAndView modelAndView = new ModelAndView("product/list");
+		List<Product> productList = productService.searchProducts(expression);
+		modelAndView.addObject("count", productList.size());
+		modelAndView.addObject("products", productList);
+		modelAndView.addObject("expression", expression);
+		//let jsp know search was submited
+		modelAndView.addObject("searchFlag", 1);
+		return modelAndView;
+	}
 
-	//serving add and update product
+	//handle add and update product
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView add(@RequestParam(value="id", required=false) String id) {
 		ModelAndView modelAndView = new ModelAndView("product/edit");
@@ -56,7 +70,7 @@ public class ProductController {
 		return modelAndView;
 	}
 
-	//serving add and update product
+	//handle add and update product
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String updateProduct(@Valid Product product, BindingResult result) {
 		//if product is not valid, redirect and show errors
