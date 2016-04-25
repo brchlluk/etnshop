@@ -18,7 +18,7 @@
 <div class="container">
 	<h2>Products</h2>
 	<div id=add>
-		<c:if test="${searchFlag == 1}">
+		<c:if test="${!empty search}">
 			<a class="btn btn-default btn-md" href="/etnshop/product/list"
 				role="button">All products</a>
 		</c:if>
@@ -27,8 +27,8 @@
 			role="button">New product</a>
 	</div>
 	<div id=search>
-		<form:form method="post">
-			<input type="text" name="expression">
+		<form:form method="get">
+			<input type="text" name="search">
 			<input type="submit" class="btn btn-default btn-md" value="Search">
 		</form:form>
 	</div>
@@ -37,17 +37,10 @@
 			<tr>
 				<th>ID</th>
 				<th>Name</th>
+				<th>Serial</th>
 			</tr>
 		</thead>
-		<tbody>
-
-			<c:if test="${searchFlag == 1 && count == 0}">
-				<tr>
-					<td>
-						<p align=center>No records were found for "${expression}".</p>
-					</td>
-				</tr>
-			</c:if>
+		<tbody>			
 			<c:forEach items="${products}" var="product">
 				<tr>
 					<td>${product.id}</td>
@@ -66,6 +59,10 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	
+	<c:if test="${!empty search && count == 0}">
+						<p align=center>No records were found for "${search}".</p>
+			</c:if>
 	<hr>
 	<div id="recordsNum">
 		${count} records found.
